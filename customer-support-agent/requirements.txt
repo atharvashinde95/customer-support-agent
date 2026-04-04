@@ -1,0 +1,9 @@
+# Customer Support Agent — dependencies
+# Python 3.11+
+# Install: pip install -r requirements.txt
+
+langchain>=0.3.0
+langchain-openai>=0.2.0
+langgraph>=0.2.0
+pydantic>=2.0.0
+streamlit>=1.35.0
