@@ -1,3 +1,37 @@
 I have built a production scheduling validation system that checks whether a natural-language requirement and Excel/CSV dataset are ready for CP-SAT optimization.
 
 It uses Groq LLM to understand the requirement, map different sheet/column names, and validate key data like orders, inventory, machines, processing time, release time, and deadlines before solving.
+
+
+
+USER_REQUIREMENT = (
+    "Validate whether this automotive machining workbook has enough job order, "
+    "part, finished stock, cycle time, workcell capacity, release time, and "
+    "deadline data for CP-SAT scheduling. The goal is to complete all machining "
+    "jobs as early as possible."
+)
+
+SCHEMA_CONTEXT = """PartRegister contains product master data for machined parts.
+  part_code is the unique product identifier.
+  cycle_time_min_per_piece is the machining processing time in minutes per unit.
+  finished_goods_on_hand is the current stock quantity available.
+
+  JobOrders contains customer job orders.
+  work_order_id is the unique order identifier.
+  part_code links each job to its part in PartRegister.
+  qty_to_machine is the quantity the customer needs produced.
+
+  CommitmentPlan contains scheduling constraints for each job order.
+  work_order_id links each record to its job in JobOrders.
+  release_day is the earliest day production can start.
+  release_minute is the earliest time of that day production can start, in minutes.
+  due_day_no is the deadline day by which the job must be completed.
+  due_minute is the deadline time of that day, in minutes.
+
+  WorkCells contains the production machines available for scheduling.
+  workcell_code is the unique machine identifier.
+  capacity_minutes_shift is the total working minutes available per machine per day.
+
+  Relationships:
+  JobOrders.part_code links to PartRegister.part_code.
+  CommitmentPlan.work_order_id links to JobOrders.work_order_id."""
