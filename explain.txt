@@ -1,0 +1,3 @@
+I have built a production scheduling validation system that checks whether a natural-language requirement and Excel/CSV dataset are ready for CP-SAT optimization.
+
+It uses Groq LLM to understand the requirement, map different sheet/column names, and validate key data like orders, inventory, machines, processing time, release time, and deadlines before solving.
